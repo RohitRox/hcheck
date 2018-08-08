@@ -1,5 +1,11 @@
 require "bundler/setup"
 require "hcheck"
+require 'pry'
+require 'dotenv'
+
+require 'hcheck'
+
+Dotenv.load('spec/.env')
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

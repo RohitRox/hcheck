@@ -1,8 +1,6 @@
 # Hcheck
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hcheck`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Configuration driven health checker for ruby apps. Can be mounted or booted as standalone app.
 
 ## Installation
 
@@ -22,13 +20,55 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To run as standalone server
+``` bash
+  hcheck -c path/to/hcheck.yml
+  hcheck # looks for hcheck.yml in current project root
+```
+
+To mount in rails app:
+``` ruby
+  # routes.rb
+  mount Hcheck::Status => '/hcheck'
+```
+Looks for `hcheck.yml` in rails root
+
+Example `hcheck.yml`
+``` yaml
+postgresql:
+  host: localhost
+  port: 5432
+  username: root
+  password:
+  database: postgres
+
+```
+A complex `hcheck.yml`
+``` yaml
+postgresql:
+  host: <%= ENV['PG_HOST'] %>
+  port: 5432
+  username: <%= `whoami` %>
+  password: <%= ENV['PG_PASSWORD'] %>
+  database: <%= ENV['PG_DBNAME'] %>
+
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. Run `rubocop` to smash all silly errors and style deficiencies.
+
+NOTE: The checks during test loads the environmental settings from `spec/.env` for things getting options for database connection. Make sure you have appropriate settings. `spec/.env` is gitignored.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Todo
+
+The checks for services resides in `lib/hchecks/checks` directory. Add checks for more services(Mongodb, Redis, Rabbitmq)
+
+Styles for status page.
+
+Allow port options to to be passed
 
 ## Contributing
 
