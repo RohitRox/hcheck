@@ -1,0 +1,13 @@
+%pre
+  %code
+    - @status.each do |s|
+      %div
+        #{s[:name]} : &nbsp;
+        - case s[:status]
+          - when 'ok'
+            %span{style: 'color: green'} Ok
+          - when 'bad'
+            %span{style: 'color: red'} Bad
+          - else
+            %span{style: 'color: orange'}= s[:status]
+
