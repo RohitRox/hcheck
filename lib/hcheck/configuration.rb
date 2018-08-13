@@ -1,7 +1,6 @@
 require 'logger'
 
 require 'hcheck/configuration/service'
-require 'hcheck/checks/postgresql'
 
 module Hcheck
   # configuration class that loads configs via various ways
@@ -13,8 +12,9 @@ module Hcheck
 
     def initialize(config)
       @services = config.map do |key, options|
-        Service.new(key, options)
-      end
+        options = [options] unless options.is_a?(Array)
+        options.map{ |o| Service.new(key, o) }
+      end.flatten
     end
 
     class << self
@@ -41,7 +41,7 @@ module Hcheck
       end
 
       def yaml_load(path)
-        YAML.safe_load(ERB.new(File.read(path)).result) || {}
+        YAML.safe_load(ERB.new(File.read(path)).result, [Symbol]) || {}
       end
     end
   end

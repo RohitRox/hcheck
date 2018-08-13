@@ -1,6 +1,23 @@
 postgresql:
+  check: App Main Database
   host: localhost
   port: 5432
-  username: root
+  username: <%= `whoami` %>
   password:
   database: postgres
+redis:
+  - check: App Main Cache
+    url: redis://localhost:6379
+    db: hcheck
+    password:
+  - check: Jobs Cache Store
+    :url: redis://mymaster
+    :db: hcheck
+    :password:
+    :role: master
+    :sentinels:
+      - :host: localhost
+        :port: 26379
+      - :host: localhost
+        :port: 26380
+

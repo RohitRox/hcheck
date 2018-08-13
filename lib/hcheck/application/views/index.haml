@@ -3,6 +3,7 @@
     - @status.each do |s|
       %div
         #{s[:name]} : &nbsp;
+        #{s[:desc]} : &nbsp;
         - case s[:status]
           - when 'ok'
             %span{style: 'color: green'} Ok

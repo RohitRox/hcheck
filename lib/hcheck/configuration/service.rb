@@ -1,3 +1,6 @@
+# find and require all check modules
+Gem.find_files("hcheck/checks/*.rb").each { |path| require path }
+
 module Hcheck
   class Configuration
     # Main service class
@@ -10,6 +13,7 @@ module Hcheck
 
       def initialize(service, options)
         @name = service.to_s
+        @check = options.delete('check')
         @options = options
         if mod = load_mod
           singleton_class.send(:include, mod)
@@ -21,6 +25,7 @@ module Hcheck
       def check
         {
           name: @name,
+          desc: @check,
           status: @check_not_available ? NOT_IMPLEMENTED_MSG : status(@options)
         }
       end
