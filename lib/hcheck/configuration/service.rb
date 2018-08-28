@@ -1,5 +1,7 @@
 # find and require all check modules
-Gem.find_files("hcheck/checks/*.rb").reject{ |f| f.match(/spec/) }.each { |path| require path }
+Dir["lib/hcheck/checks/*.rb"].each do |check_file|
+  require File.join('.', check_file)
+end
 
 module Hcheck
   class Configuration
