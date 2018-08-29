@@ -37,3 +37,6 @@ rabbitmq:
   port: 5672
   user: guest
   pass: guest
+ping:
+  check: Main App Home
+  url: http://127.0.0.1:3033/
