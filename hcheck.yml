@@ -24,3 +24,8 @@ mongodb:
   check: Mongo DB
   hosts:
     - localhost:27017
+mysql:
+  check: Mysql Connection
+  host: localhost
+  username: localuser
+  password: password

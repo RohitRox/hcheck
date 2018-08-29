@@ -1,10 +1,10 @@
 module Hcheck
   module Checks
-    # postgresql check module
+    # mongodb check module
     # implements status
-    # include postgresql check dependencies
+    # include mongodb check dependencies
     module Mongodb
-      # @config { host, port, options, tty, dbname, user, password }
+      # @config { hosts }
       def status(config)
         hosts = config['hosts'].compact
         client = Mongo::Client.new(hosts, connect_timeout: 3, server_selection_timeout: hosts.count * 2)
