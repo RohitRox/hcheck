@@ -16,7 +16,7 @@ module Hcheck
       def initialize(service, options)
         @name = service.to_s
         @check = options.delete('check')
-        @options = options
+        @options = options.symbolize_keys
         if mod = load_mod
           singleton_class.send(:include, mod)
         else

@@ -4,7 +4,7 @@ RSpec.describe 'Hcheck::Checks::Mongodb' do
   describe '#status' do
     let(:config) do
       {
-        'hosts' => ['MONGO_DB_HOST', nil]
+        hosts: ['MONGO_DB_HOST', nil]
       }
     end
     let(:connection) { double('Mongo::Client', database_names: [], close: true) }
@@ -16,7 +16,7 @@ RSpec.describe 'Hcheck::Checks::Mongodb' do
     subject { status(config) }
 
     it 'tries to make mongo connection with supplied config (removes nil hosts) with additional config' do
-      hosts = config['hosts'].compact
+      hosts = config[:hosts].compact
       expect(Mongo::Client).to receive(:new).with(hosts,
                                                   connect_timeout: 3,
                                                   server_selection_timeout: hosts.count * 2)

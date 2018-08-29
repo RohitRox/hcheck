@@ -10,12 +10,12 @@ redis:
     url: redis://localhost:6379
     db: hcheck
     password:
-  - check: Jobs Cache Store
-    :url: redis://mymaster
-    :db: hcheck
-    :password:
-    :role: master
-    :sentinels:
+  - check: Cache Sentinels
+    url: redis://mymaster
+    db: hcheck
+    password:
+    role: master
+    sentinels:
       - :host: localhost
         :port: 26379
       - :host: localhost

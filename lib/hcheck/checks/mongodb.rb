@@ -4,15 +4,14 @@ module Hcheck
     # implements status
     # include mongodb check dependencies
     module Mongodb
-      # @config { hosts }
+      # @config { hosts, user, password }
       def status(config)
-        hosts = config['hosts'].compact
-        client = Mongo::Client.new(hosts, connect_timeout: 3, server_selection_timeout: hosts.count * 2)
+        hosts = config.delete(:hosts).compact
+        client = Mongo::Client.new(hosts, config.merge(connect_timeout: 3, server_selection_timeout: hosts.count * 2))
         client.database_names
         client.close
         'ok'
       rescue Mongo::Error::NoServerAvailable => e
-        client.close
         Hcheck.logger.error "[HCheck] Mongo::Error::NoServerAvailable #{e.message}"
         'bad'
       end
