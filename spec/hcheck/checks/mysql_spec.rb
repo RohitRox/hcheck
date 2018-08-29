@@ -23,13 +23,13 @@ RSpec.describe Hcheck::Checks::Mysql do
       subject
     end
 
-    context 'when hcheck is able to connect to postgres with supplied config' do
+    context 'when hcheck is able to connect to mysql with supplied config' do
       it 'returns ok' do
         expect(subject).to eql 'ok'
       end
     end
 
-    context 'when hcheck is not able to connect to postgres with supplied config' do
+    context 'when hcheck is not able to connect to mysql with supplied config' do
       before do
         mysql_error_obj = double(:error, encode: true)
         allow(Mysql2::Client).to receive(:new).and_raise(Mysql2::Error, mysql_error_obj)
