@@ -6,8 +6,9 @@ module Hcheck
     module Mongodb
       # @config { hosts, user, password }
       def status(config)
-        hosts = config.delete(:hosts).compact
-        client = Mongo::Client.new(hosts, config.merge(connect_timeout: 3, server_selection_timeout: hosts.count * 2))
+        mongo_config = config.merge(connect_timeout: 3)
+        hosts = mongo_config.delete(:hosts).compact
+        client = Mongo::Client.new(hosts, mongo_config.merge(server_selection_timeout: hosts.count * 2))
         client.database_names
         client.close
         'ok'
