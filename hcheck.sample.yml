@@ -31,3 +31,9 @@ mysql:
   host: localhost
   username: localuser
   password: password
+rabbitmq:
+  check: Rabbit Main
+  host: localhost
+  port: 5672
+  user: guest
+  pass: guest
