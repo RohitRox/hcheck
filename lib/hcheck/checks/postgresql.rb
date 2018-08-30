@@ -6,8 +6,8 @@ module Hcheck
     module Postgresql
       # @config { host, port, options, tty, dbname, user, password }
       def status(config)
-        config['user'] = config.delete('username') if config['username']
-        config['dbname'] = config.delete('database') if config['database']
+        config[:user] = config.delete(:username) if config[:username]
+        config[:dbname] = config.delete(:database) if config[:database]
 
         PG::Connection.new(config).close
         'ok'

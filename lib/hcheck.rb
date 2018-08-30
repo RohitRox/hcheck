@@ -1,9 +1,9 @@
 require 'yaml'
 require 'erb'
-
-require 'hcheck/version'
 require 'logger'
 
+require 'hcheck/version'
+require 'hcheck/helper'
 require 'hcheck/application'
 require 'hcheck/configuration'
 
