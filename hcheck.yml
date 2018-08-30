@@ -39,7 +39,7 @@ rabbitmq:
   pass: guest
 ping:
   check: Main App Home
-  url: http://127.0.0.1:3033/
+  url: https://google.com/
 memcached:
   check: Memcached Cache
   url: localhost:11211

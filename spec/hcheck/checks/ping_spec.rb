@@ -7,10 +7,12 @@ RSpec.describe Hcheck::Checks::Ping do
         url: 'http://127.0.0.1/'
       }
     end
-    let(:request) { double('NET HTTP Request', request_head: true) }
+    let(:request) { double('NET HTTP Request') }
+    let(:response) { Net::HTTPSuccess.new(1.0, 200, 'OK') }
 
     before do
       allow(request).to receive(:read_timeout=)
+      allow(request).to receive(:request_head){ response }
       allow(Net::HTTP).to receive(:new) { request }
     end
 
@@ -27,20 +29,18 @@ RSpec.describe Hcheck::Checks::Ping do
       subject
     end
 
-  #   context 'when hcheck is able to connect to postgres with supplied config' do
-  #     it 'returns ok' do
-  #       expect(subject).to eql 'ok'
-  #     end
-  #   end
+    context 'when hcheck is able to ping and get a successful response' do
+      it 'returns ok' do
+        expect(subject).to eql 'ok'
+      end
+    end
 
-  #   context 'when hcheck is not able to connect to postgres with supplied config' do
-  #     before do
-  #       allow(PG::Connection).to receive(:new).and_raise(PG::ConnectionBad)
-  #     end
+    context 'when hcheck is not able to ping and get a successful response' do
+      let(:response){ Net::HTTPInternalServerError.new(1.0, 500, 'Internal Server Error') }
 
-  #     it 'returns bad' do
-  #       expect(subject).to eql 'bad'
-  #     end
-  #   end
+      it 'returns bad' do
+        expect(subject).to eql 'bad'
+      end
+    end
   end
 end
