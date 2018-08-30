@@ -27,21 +27,21 @@ module Hcheck
       end
 
       def load_file(path)
-        load yaml_load(path)
+        load read(path)
       end
 
       def load_default
         load_file(DEFAULT_CONFIG_PATH)
       end
 
+      def read(path)
+        YAML.safe_load(ERB.new(File.read(path)).result, [Symbol]) || {}
+      end
+
       private
 
       def argv_config_present?(argvs)
         !argvs.empty? && argvs[0].match(/-+(config|c)/i)
-      end
-
-      def yaml_load(path)
-        YAML.safe_load(ERB.new(File.read(path)).result, [Symbol]) || {}
       end
     end
   end
