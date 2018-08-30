@@ -40,6 +40,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pg', '~> 0.18'
   spec.add_development_dependency 'mysql2', '~> 0.5.2'
   spec.add_development_dependency 'redis', '~> 4.0.2'
+  spec.add_development_dependency 'dalli', '~> 2.7.8'
   spec.add_development_dependency 'bunny', "~> 2.9.2"
 
   spec.add_development_dependency 'pry', '~> 0.11'

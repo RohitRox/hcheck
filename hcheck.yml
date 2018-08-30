@@ -40,3 +40,8 @@ rabbitmq:
 ping:
   check: Main App Home
   url: http://127.0.0.1:3033/
+memcached:
+  check: Memcached Cache
+  url: localhost:11211
+  namespace: app_v1
+  compress: true
