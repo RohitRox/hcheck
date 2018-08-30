@@ -5,3 +5,24 @@ postgresql:
   username: root
   password:
   database: postgres
+redis:
+  - check: App Main Cache
+    url: redis://localhost:6379
+    db: hcheck
+    password:
+  - check: Cache Sentinels
+    url: redis://mymaster
+    db: hcheck
+    password:
+    role: master
+    sentinels:
+      - :host: localhost
+        :port: 26379
+      - :host: localhost
+        :port: 26380
+mongodb:
+  check: Mongo DB
+  hosts:
+    - localhost:27017
+  user:
+  password:
