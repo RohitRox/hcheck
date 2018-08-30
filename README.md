@@ -36,6 +36,7 @@ Looks for `hcheck.yml` in rails root
 Example `hcheck.yml`
 ``` yaml
 postgresql:
+  check: App Main Store # Name of the check
   host: localhost
   port: 5432
   username: root
@@ -46,13 +47,35 @@ postgresql:
 A complex `hcheck.yml`
 ``` yaml
 postgresql:
+  check: App Main Store
   host: <%= ENV['PG_HOST'] %>
   port: 5432
   username: <%= `whoami` %>
   password: <%= ENV['PG_PASSWORD'] %>
   database: <%= ENV['PG_DBNAME'] %>
+redis:
+  - check: App Main Cache
+    url: redis://localhost:6379
+    db: hcheck
+    password:
+  - check: Delayed Jobs Store
+    :url: redis://mymaster
+    :db: hcheck
+    :password:
+    :role: master
+    :sentinels:
+      - :host: localhost
+        :port: 26379
+      - :host: localhost
+        :port: 26380
 
 ```
+
+`check` key refers to given name or description of the check. Note that some of the keys are sybmols. Please look into the corresponding check modules and determine if you need string or symbols for the config for your purpose.
+
+## Dependencies
+
+The checks are implemented with the help of available gems. Postgresql check require `pg` gem, redis requires `redis` and so on. Check out indivisual module files in `lib/hcheck/checks` to see what and how they are being required.
 
 ## Development
 
