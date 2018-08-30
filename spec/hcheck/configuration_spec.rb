@@ -1,5 +1,5 @@
 RSpec.describe Hcheck::Configuration do
-  FIXTURE_FILE_PATH = "#{Dir.pwd}/spec/fixtures/hcheck.yml"
+  FIXTURE_FILE_PATH = "#{Dir.pwd}/spec/fixtures/hcheck.yml".freeze
 
   let(:fixture_file_config) do
     YAML.safe_load(ERB.new(File.read(FIXTURE_FILE_PATH)).result, [Symbol])

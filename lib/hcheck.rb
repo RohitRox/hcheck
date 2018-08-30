@@ -12,7 +12,7 @@ module Hcheck
   class << self
     attr_accessor :configuration, :logging
 
-    LOG_FILE_PATH = 'log/hcheck.log'
+    LOG_FILE_PATH = 'log/hcheck.log'.freeze
 
     def status
       if configuration
@@ -29,10 +29,6 @@ module Hcheck
       self.configuration ||= Configuration.new(config)
     end
 
-    def logger(_config = {})
-      self.logging ||= Logger.new(STDOUT)
-    end
-
     def logger
       self.logging ||= set_logger
     end
@@ -43,7 +39,7 @@ module Hcheck
       dir = File.dirname(LOG_FILE_PATH)
       FileUtils.mkdir_p(dir) unless File.directory?(dir)
       logger = Logger.new(LOG_FILE_PATH, 'daily')
-      logger.formatter = proc do |severity, datetime, progname, msg|
+      logger.formatter = proc do |severity, datetime, _progname, msg|
         log_msg = "[#{severity}] [#{datetime}] #{msg}"
         puts log_msg
         log_msg
