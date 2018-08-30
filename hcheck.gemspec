@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'mongo', '~> 2.4.3'
   spec.add_development_dependency 'pg', '~> 0.18'
   spec.add_development_dependency 'redis', '~> 4.0.2'
+  spec.add_development_dependency 'mysql2', '~> 0.5.2'
 
   spec.add_development_dependency 'haml', '~> 5.0'
   spec.add_development_dependency 'rake', '~> 10.0'
