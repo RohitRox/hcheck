@@ -100,17 +100,14 @@ The checks are implemented with the help of available gems. Postgresql check req
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment. Run `rubocop` to smash all silly errors and style deficiencies.
 
-NOTE: The checks during test loads the environmental settings from `spec/.env` for things getting options for database connection. Make sure you have appropriate settings. `spec/.env` is gitignored.
+The checks during test loads the environmental settings from `spec/.env` for helping with testing in local machine.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Todo
 
-The checks for services resides in `lib/hchecks/checks` directory. Add checks for more services(Mongodb, Redis, Rabbitmq)
-
 Styles for status page.
 
-Allow port options to to be passed
 
 ## Contributing
 
