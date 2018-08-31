@@ -26,8 +26,9 @@ Gem::Specification.new do |spec|
     f.match(%r{^(test|spec|features)/})
   end
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib']
+  spec.bindir = "exe"
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib".freeze]
 
   spec.add_runtime_dependency 'haml', '~> 5.0'
   spec.add_runtime_dependency 'sinatra', '~> 2.0'
