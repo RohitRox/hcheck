@@ -1,6 +1,6 @@
 # find and require all check modules
-Dir['lib/hcheck/checks/*.rb'].each do |check_file|
-  require File.join('.', check_file)
+Gem.find_files("hcheck/checks/*.rb").each do |check_file|
+  require "hcheck/checks/#{File.basename(check_file)}"
 end
 
 module Hcheck
