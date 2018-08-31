@@ -19,7 +19,8 @@ module Hcheck
         configuration.services.map(&:check)
       else
         [{
-          service: 'hcheck',
+          name: 'Hcheck',
+          desc: 'Hcheck',
           status: 'Hcheck configuration not found'
         }]
       end

@@ -1,12 +1,12 @@
 postgresql:
-  check: Core Store
+  check: Core Datastore
   host: localhost
   port: 5432
-  username: root
+  username: <%= `whoami` %>
   password:
   database: postgres
 redis:
-  - check: App Main Cache
+  - check: Store Cache
     url: redis://localhost:6379
     db: hcheck
     password:
@@ -32,7 +32,7 @@ mysql:
   username: localuser
   password: password
 rabbitmq:
-  check: Rabbit Main
+  check: Rabbit
   host: localhost
   port: 5672
   user: guest
@@ -43,5 +43,5 @@ ping:
 memcached:
   check: Memcached Cache
   url: localhost:11211
-  namespace: app_v1
+  namespace: app
   compress: true
