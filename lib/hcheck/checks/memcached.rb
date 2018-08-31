@@ -1,9 +1,8 @@
-require 'pry'
 module Hcheck
   module Checks
-    # mongodb check module
+    # memcached check module
     # implements status
-    # include mongodb check dependencies
+    # include memcached check dependencies
     module Memcached
       # @config { hosts, user, password }
       def status(config)
