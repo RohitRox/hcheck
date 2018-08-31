@@ -1,9 +1,9 @@
 require 'yaml'
 require 'erb'
-
-require 'hcheck/version'
 require 'logger'
 
+require 'hcheck/version'
+require 'hcheck/helpers'
 require 'hcheck/application'
 require 'hcheck/configuration'
 
@@ -24,11 +24,25 @@ module Hcheck
     end
   end
 
+  LOG_FILE_PATH = 'log/hcheck.log'
+
   def self.configure(config = {})
     self.configuration ||= Configuration.new(config)
   end
 
-  def self.logger(_config = {})
-    self.logging ||= Logger.new(STDOUT)
+  def self.logger
+    self.logging ||= self.set_logger
+  end
+
+  def self.set_logger
+    dir = File.dirname(LOG_FILE_PATH)
+    FileUtils.mkdir_p(dir) unless File.directory?(dir)
+    logger = Logger.new(LOG_FILE_PATH, 'daily')
+    logger.formatter = proc do |severity, datetime, progname, msg|
+      log_msg = "[#{severity}] [#{datetime}] #{msg}"
+      puts log_msg
+      log_msg
+    end
+    logger
   end
 end

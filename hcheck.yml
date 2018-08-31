@@ -10,12 +10,12 @@ redis:
     url: redis://localhost:6379
     db: hcheck
     password:
-  - check: Jobs Cache Store
-    :url: redis://mymaster
-    :db: hcheck
-    :password:
-    :role: master
-    :sentinels:
+  - check: Cache Sentinels
+    url: redis://mymaster
+    db: hcheck
+    password:
+    role: master
+    sentinels:
       - :host: localhost
         :port: 26379
       - :host: localhost
@@ -24,3 +24,24 @@ mongodb:
   check: Mongo DB
   hosts:
     - localhost:27017
+  user:
+  password:
+mysql:
+  check: Mysql Connection
+  host: localhost
+  username: localuser
+  password: password
+rabbitmq:
+  check: Rabbit Main
+  host: localhost
+  port: 5672
+  user: guest
+  pass: guest
+ping:
+  check: Main App Home
+  url: https://google.com/
+memcached:
+  check: Memcached Cache
+  url: localhost:11211
+  namespace: app_v1
+  compress: true

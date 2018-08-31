@@ -13,7 +13,7 @@ module Hcheck
     def initialize(config)
       @services = config.map do |key, options|
         options = [options] unless options.is_a?(Array)
-        options.map{ |o| Service.new(key, o) }
+        options.map { |o| Service.new(key, o) }
       end.flatten
     end
 

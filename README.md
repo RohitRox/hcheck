@@ -68,14 +68,33 @@ redis:
         :port: 26379
       - :host: localhost
         :port: 26380
-
+mongodb:
+  check: Mongo DB
+  hosts:
+    - localhost:27017
+  user:
+  password:
+mysql:
+  check: Mysql Connection
+  host: localhost
+  username: localuser
+  password: password
+rabbitmq:
+  check: Rabbit Main
+  host: localhost
+  port: 5672
+  user: guest
+  pass: guest
+ping:
+  check: Main App Home
+  url: http://127.0.0.1:3033/
 ```
 
 `check` key refers to given name or description of the check. Note that some of the keys are sybmols. Please look into the corresponding check modules and determine if you need string or symbols for the config for your purpose.
 
 ## Dependencies
 
-The checks are implemented with the help of available gems. Postgresql check require `pg` gem, redis requires `redis` and so on. Check out indivisual module files in `lib/hcheck/checks` to see what and how they are being required.
+The checks are implemented with the help of available gems. Postgresql check require `pg` gem, redis requires `redis` and so on. Check out individual module files in `lib/hcheck/checks` to see what and how they are being required.
 
 ## Development
 

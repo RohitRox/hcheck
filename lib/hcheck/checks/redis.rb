@@ -9,7 +9,7 @@ module Hcheck
         ::Redis.new(config).ping
         'ok'
       rescue ::Redis::CannotConnectError => e
-        puts "[HCheck] Redis server unavailable #{e.message}"
+        Hcheck.logger.error "[HCheck] Redis server unavailable #{e.message}"
         'bad'
       end
 

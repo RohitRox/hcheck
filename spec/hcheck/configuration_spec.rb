@@ -1,6 +1,6 @@
 RSpec.describe Hcheck::Configuration do
   let(:default_file_config) do
-    YAML.safe_load(ERB.new(File.read("#{Dir.pwd}/hcheck.yml")).result)
+    YAML.safe_load(ERB.new(File.read("#{Dir.pwd}/hcheck.yml")).result, [Symbol])
   end
 
   describe '.load' do

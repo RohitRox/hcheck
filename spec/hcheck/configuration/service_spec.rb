@@ -30,6 +30,7 @@ RSpec.describe Hcheck::Configuration::Service do
 
         expect(subject.check).to eql(
           name: service_name,
+          desc: nil,
           status: service_status
         )
       end
@@ -41,6 +42,7 @@ RSpec.describe Hcheck::Configuration::Service do
       it 'returns not implemented status' do
         expect(subject.check).to eql(
           name: service_name,
+          desc: nil,
           status: Hcheck::Configuration::Service::NOT_IMPLEMENTED_MSG
         )
       end
