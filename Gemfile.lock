@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     hcheck (0.1.0)
+      haml (~> 5.0)
+      sinatra (~> 2.0)
 
 GEM
   remote: https://rubygems.org/

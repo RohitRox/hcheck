@@ -29,6 +29,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_runtime_dependency 'haml', '~> 5.0'
+  spec.add_runtime_dependency 'sinatra', '~> 2.0'
+
   spec.add_development_dependency 'bundler', '~> 1.16'
 
   spec.add_development_dependency 'bunny', '~> 2.9.2'
