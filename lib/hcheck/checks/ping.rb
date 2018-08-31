@@ -12,6 +12,8 @@ module Hcheck
         req.use_ssl = true if url.scheme == 'https'
         req.read_timeout = 5 # seconds
 
+        url.path = '/' if url.path.empty?
+
         case req.request_head(url.path)
         when Net::HTTPSuccess, Net::HTTPRedirection, Net::HTTPInformation
           'ok'
