@@ -12,7 +12,7 @@ RSpec.describe Hcheck::Checks::Ping do
 
     before do
       allow(request).to receive(:read_timeout=)
-      allow(request).to receive(:request_head){ response }
+      allow(request).to receive(:request_head) { response }
       allow(Net::HTTP).to receive(:new) { request }
     end
 
@@ -36,7 +36,7 @@ RSpec.describe Hcheck::Checks::Ping do
     end
 
     context 'when hcheck is not able to ping and get a successful response' do
-      let(:response){ Net::HTTPInternalServerError.new(1.0, 500, 'Internal Server Error') }
+      let(:response) { Net::HTTPInternalServerError.new(1.0, 500, 'Internal Server Error') }
 
       it 'returns bad' do
         expect(subject).to eql 'bad'

@@ -1,4 +1,4 @@
-RSpec.describe 'Hcheck::Checks::Mongodb' do
+RSpec.describe Hcheck::Checks::Mongodb do
   include Hcheck::Checks::Mongodb
 
   describe '#status' do

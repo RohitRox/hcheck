@@ -9,7 +9,7 @@ RSpec.describe Hcheck::Checks::Memcached do
         compress: 'MEMCACHED_DB_COMPRESS'
       }
     end
-    let(:config) { {url: url}.merge(other_config) }
+    let(:config) { { url: url }.merge(other_config) }
     let(:connection) { double('Dalli::Client', set: 'ok', get: 'ok') }
 
     before do

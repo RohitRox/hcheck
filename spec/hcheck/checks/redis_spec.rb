@@ -1,4 +1,4 @@
-RSpec.describe 'Hcheck::Checks::Redis' do
+RSpec.describe Hcheck::Checks::Redis do
   include Hcheck::Checks::Redis
 
   describe '#status' do
