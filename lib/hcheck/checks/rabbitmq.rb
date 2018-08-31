@@ -15,7 +15,9 @@ module Hcheck
              Bunny::TCPConnectionFailedForAllHosts,
              Bunny::NetworkFailure,
              Bunny::AuthenticationFailureError,
-             Bunny::PossibleAuthenticationFailureError => e
+             Bunny::PossibleAuthenticationFailureError,
+             AMQ::Protocol::EmptyResponseError=> e
+
         Hcheck.logger.error "[HCheck] Bunny::Error #{e.message}"
         'bad'
       end
