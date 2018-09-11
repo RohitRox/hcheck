@@ -1,0 +1,7 @@
+postgresql:
+  check: Core Store
+  host: localhost
+  port: 5432
+  username: root
+  password:
+  database

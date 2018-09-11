@@ -6,6 +6,9 @@ require 'hcheck'
 
 Dotenv.load('spec/.env')
 
+FIXTURE_HCHECK_FILE_PATH = "#{Dir.pwd}/spec/fixtures/hcheck.yml".freeze
+INVALID_CONFIG_PATH = "#{Dir.pwd}/spec/fixtures/hcheck.invalid.yml".freeze
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'

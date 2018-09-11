@@ -1,8 +1,6 @@
 RSpec.describe Hcheck::Configuration do
-  FIXTURE_FILE_PATH = "#{Dir.pwd}/spec/fixtures/hcheck.yml".freeze
-
   let(:fixture_file_config) do
-    YAML.safe_load(ERB.new(File.read(FIXTURE_FILE_PATH)).result, [Symbol])
+    YAML.safe_load(ERB.new(File.read(FIXTURE_HCHECK_FILE_PATH)).result, [Symbol])
   end
 
   describe '.load' do
@@ -16,17 +14,17 @@ RSpec.describe Hcheck::Configuration do
 
   describe '.read' do
     it 'reads yaml file' do
-      expect(Hcheck::Configuration.read(FIXTURE_FILE_PATH)).to eql fixture_file_config
+      expect(Hcheck::Configuration.read(FIXTURE_HCHECK_FILE_PATH)).to eql fixture_file_config
     end
   end
 
   describe '.load_file' do
     it 'loads supplied hcheck.yml file path' do
       config = double(:config)
-      expect(Hcheck::Configuration).to receive(:read).with(FIXTURE_FILE_PATH).and_return config
+      expect(Hcheck::Configuration).to receive(:read).with(FIXTURE_HCHECK_FILE_PATH).and_return config
       expect(Hcheck::Configuration).to receive(:load).with config
 
-      Hcheck::Configuration.load_file(FIXTURE_FILE_PATH)
+      Hcheck::Configuration.load_file(FIXTURE_HCHECK_FILE_PATH)
     end
   end
 
@@ -41,9 +39,9 @@ RSpec.describe Hcheck::Configuration do
   describe '.load_argv' do
     context 'when argv -C/--config was supplied' do
       it 'configures Hcheck with supplied config file path' do
-        expect(Hcheck::Configuration).to receive(:load_file).with FIXTURE_FILE_PATH
+        expect(Hcheck::Configuration).to receive(:load_file).with FIXTURE_HCHECK_FILE_PATH
 
-        Hcheck::Configuration.load_argv(['-C', FIXTURE_FILE_PATH])
+        Hcheck::Configuration.load_argv(['-C', FIXTURE_HCHECK_FILE_PATH])
       end
     end
 
