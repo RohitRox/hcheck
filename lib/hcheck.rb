@@ -43,7 +43,7 @@ module Hcheck
       logger.formatter = proc do |severity, datetime, _progname, msg|
         log_msg = "[#{severity}] [#{datetime}] #{msg}"
         puts log_msg
-        log_msg
+        "#{log_msg}\n"
       end
       logger
     end
