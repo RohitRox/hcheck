@@ -2,6 +2,7 @@ require 'sinatra'
 require 'haml'
 
 require 'hcheck'
+require 'hcheck/application/helpers/responders'
 
 module Hcheck
   # base sinatra application
@@ -10,19 +11,7 @@ module Hcheck
     set :views, File.expand_path('application/views', __dir__)
     set :haml, format: :html5
 
-    helpers do
-      def h_status
-        @status = Hcheck.status
-
-        if @status.find { |s| s[:status] == 'bad' }
-          status 503
-        else
-          status 200
-        end
-
-        haml :index
-      end
-    end
+    include Hcheck::ApplicationHelpers::Responders
   end
 
   # sinatra that gets booted when run in standalone mode

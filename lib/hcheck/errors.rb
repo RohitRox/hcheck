@@ -1,4 +1,3 @@
-require 'pry'
 module Hcheck
   module Errors
     class HcheckError < StandardError
