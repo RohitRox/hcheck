@@ -22,8 +22,8 @@ module Hcheck
         haml :error
       end
 
-      def respond_with(message, status, view)
-        status 500
+      def respond_with(message, status_code, view)
+        status status_code
         @msg = message
 
         haml view
