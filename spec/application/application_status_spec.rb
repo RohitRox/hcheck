@@ -13,38 +13,38 @@ RSpec.describe Hcheck::Application do
   end
 
   after(:all) do
-    ENV['HCHECK_SECURE'] = "true"
+    ENV['HCHECK_SECURE'] = 'true'
     Hcheck::Configuration::DEFAULT_CONFIG_PATH = ORIGINAL_CONFIG
   end
 
-  context "GET /" do
+  context 'GET /' do
     context 'config is good to go' do
       def app
         Hcheck::Status.new
       end
 
       context 'all checks pass' do
-        it "displays Ok status page with 2xx status code" do
+        it 'displays Ok status page with 2xx status code' do
           allow(PG::Connection).to receive(:new) { double(:connection, close: true) }
 
           get '/'
 
-          expect(last_response.body).to include("Hcheck Status Page")
-          expect(last_response.body).to include("Core Store")
-          expect(last_response.body).to include("Ok")
+          expect(last_response.body).to include('Hcheck Status Page')
+          expect(last_response.body).to include('Core Store')
+          expect(last_response.body).to include('Ok')
           expect(last_response.status).to eql 200
         end
       end
 
       context 'one of the a check fails' do
-        it "displays Bad status page with 5xx status code" do
+        it 'displays Bad status page with 5xx status code' do
           allow(PG::Connection).to receive(:new).and_raise(PG::ConnectionBad)
 
           get '/'
 
-          expect(last_response.body).to include("Hcheck Status Page")
-          expect(last_response.body).to include("Core Store")
-          expect(last_response.body).to include("Bad")
+          expect(last_response.body).to include('Hcheck Status Page')
+          expect(last_response.body).to include('Core Store')
+          expect(last_response.body).to include('Bad')
           expect(last_response.status).to eql 503
         end
       end
@@ -52,7 +52,7 @@ RSpec.describe Hcheck::Application do
       context 'secure path' do
         context 'secured path is activated but token is not setup' do
           it 'displays config error with 4xx response' do
-            ENV['HCHECK_SECURE'] = "true"
+            ENV['HCHECK_SECURE'] = 'true'
 
             get '/'
 
@@ -63,8 +63,8 @@ RSpec.describe Hcheck::Application do
 
         context 'secured path is activated with token' do
           before do
-            ENV['HCHECK_SECURE'] = "true"
-            ENV['HCHECK_ACCESS_TOKEN'] = "blah"
+            ENV['HCHECK_SECURE'] = 'true'
+            ENV['HCHECK_ACCESS_TOKEN'] = 'blah'
 
             allow(PG::Connection).to receive(:new) { double(:connection, close: true) }
           end
@@ -73,16 +73,16 @@ RSpec.describe Hcheck::Application do
             ENV['HCHECK_ACCESS_TOKEN'] = nil
           end
 
-          context "token is valid" do
+          context 'token is valid' do
             it 'displays status page with 2xx response' do
               get '/?token=blah'
 
-              expect(last_response.body).to include("Hcheck Status Page")
+              expect(last_response.body).to include('Hcheck Status Page')
               expect(last_response.status).to eql 200
             end
           end
 
-          context "token is not present" do
+          context 'token is not present' do
             it 'displays auth error with 4xx response' do
               get '/'
 
@@ -91,7 +91,7 @@ RSpec.describe Hcheck::Application do
             end
           end
 
-          context "token is not valid" do
+          context 'token is not valid' do
             it 'displays auth error with 4xx response' do
               get '/?token=xxx'
 
@@ -131,7 +131,7 @@ RSpec.describe Hcheck::Application do
         end
 
         before do
-          Hcheck::Configuration::DEFAULT_CONFIG_PATH = 'some/random/path.yml'
+          Hcheck::Configuration::DEFAULT_CONFIG_PATH = 'some/random/path.yml'.freeze
         end
 
         it 'display config error with 5xx response' do

@@ -29,6 +29,6 @@ class Object
   end
 
   def present?
-   !blank?
+    !blank?
   end
 end

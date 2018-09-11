@@ -1,5 +1,5 @@
 # find and require all check modules
-Gem.find_files("hcheck/checks/*.rb").each do |check_file|
+Gem.find_files('hcheck/checks/*.rb').each do |check_file|
   require "hcheck/checks/#{File.basename(check_file)}"
 end
 

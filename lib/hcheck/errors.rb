@@ -1,7 +1,7 @@
 module Hcheck
   module Errors
     class HcheckError < StandardError
-      MSG = 'Hcheck standard error'
+      MSG = 'Hcheck standard error'.freeze
       def initialize(msg = nil)
         message = msg || self.class::MSG
         Hcheck.logger.error message
@@ -10,15 +10,15 @@ module Hcheck
     end
 
     class InvalidAuthentication < HcheckError
-      MSG = "Invalid authenticity token!"
+      MSG = 'Invalid authenticity token!'.freeze
     end
 
     class IncompleteAuthSetup < HcheckError
-      MSG="Incomplete auth setup in HCheck server"
+      MSG = 'Incomplete auth setup in HCheck server'.freeze
     end
 
     class ConfigurationError < HcheckError
-      MSG="Hcheck configuration cannot not be found or read"
+      MSG = 'Hcheck configuration cannot not be found or read'.freeze
 
       def initialize(e)
         super("#{MSG}\n#{e.class}\n#{e.message}")

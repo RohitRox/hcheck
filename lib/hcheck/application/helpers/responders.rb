@@ -1,7 +1,7 @@
 module Hcheck
   module ApplicationHelpers
     module Responders
-      extend self
+      module_function
 
       def h_status
         authenticate!(params) if secured_access_enabled?
@@ -15,7 +15,7 @@ module Hcheck
         end
 
         haml :index
-      rescue Hcheck::Errors::InvalidAuthentication, Hcheck::Errors::IncompleteAuthSetup  => e
+      rescue Hcheck::Errors::InvalidAuthentication, Hcheck::Errors::IncompleteAuthSetup => e
         status 401
         @msg = e.message
 

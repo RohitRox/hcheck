@@ -25,10 +25,10 @@ Gem::Specification.new do |spec|
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.bindir = "exe"
+  spec.test_files = spec.files.grep(%r{^(test|spec|features)/})
+  spec.bindir = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib".freeze]
+  spec.require_paths = ['lib'.freeze]
 
   spec.add_runtime_dependency 'haml', '~> 5.0'
   spec.add_runtime_dependency 'sinatra', '~> 2.0'
@@ -48,7 +48,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'dotenv', '~> 2.5.0'
   spec.add_development_dependency 'pry', '~> 0.11'
-  spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rack-test', '~> 1.1.0'
+  spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop', '~> 0.58.2'
 end
