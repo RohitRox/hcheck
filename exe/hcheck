@@ -4,13 +4,10 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'hcheck'
 
-begin
-  if ARGV.any?
-    Hcheck::Configuration.load_argv(ARGV)
-  else
-    Hcheck::Configuration.load_default
-  end
-  Hcheck::Application.run!
-rescue LoadError => e
-  puts "Load Error #{e.message}"
+if ARGV.any?
+  Hcheck::Configuration.load_argv(ARGV)
+else
+  Hcheck::Configuration.load_default
 end
+
+Hcheck::Application.run!

@@ -1,0 +1,26 @@
+%table.table
+  %tbody
+    %tr
+      %td
+        .error= @msg
+:css
+  body {
+    background: #fefefe;
+    font-family: sans-serif;
+  }
+  .table {
+    width: 1024px;
+    margin: 0 auto;
+  }
+  .table td, .table th {
+    padding: 12px;
+    font-weight: 200;
+    text-align: center;
+  }
+  .table th {
+    font-size: 2em;
+    padding: 20px;
+  }
+  .error {
+    color: red
+  }

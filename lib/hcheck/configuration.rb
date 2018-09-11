@@ -36,6 +36,8 @@ module Hcheck
 
       def read(path)
         YAML.safe_load(ERB.new(File.read(path)).result, [Symbol]) || {}
+      rescue StandardError => e
+        raise Hcheck::Errors::ConfigurationError, e
       end
 
       private

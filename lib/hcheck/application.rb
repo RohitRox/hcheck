@@ -34,9 +34,20 @@ module Hcheck
   class Status < Base
     def initialize(app = nil)
       Hcheck::Configuration.load_default
+    rescue Hcheck::Errors::ConfigurationError => e
+      @config_error = e
+    ensure
       super(app)
     end
 
-    get('/') { h_status }
+    get('/') do
+      if @config_error
+        Hcheck.logger.error @config_error.message
+
+        respond_with Hcheck::Errors::ConfigurationError::MSG, 500, :error
+      else
+        h_status
+      end
+    end
   end
 end

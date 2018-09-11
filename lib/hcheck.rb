@@ -6,6 +6,7 @@ require 'hcheck/version'
 require 'hcheck/helper'
 require 'hcheck/application'
 require 'hcheck/configuration'
+require 'hcheck/errors'
 
 # Main Hcheck module
 module Hcheck
