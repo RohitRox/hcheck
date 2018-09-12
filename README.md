@@ -92,6 +92,10 @@ ping:
 
 `check` key refers to given name or description of the check. Note that some of the keys are sybmols. Please look into the corresponding check modules and determine if you need string or symbols for the config for your purpose.
 
+## Authenticated Hcheck
+
+Basic token based authentication can be enabled if desired. Env variable `HCHECK_SECURE` can set set to protect the hcheck path and `HCHECK_ACCESS_TOKEN`can be used to set token. Token can then sent as `token` get params, like `/hcheck?token=xxx`. Authentication failure will render 401.
+
 ## Dependencies
 
 The checks are implemented with the help of available gems. Postgresql check require `pg` gem, redis requires `redis` and so on. Check out individual module files in `lib/hcheck/checks` to see what and how they are being required.
