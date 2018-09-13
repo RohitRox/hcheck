@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'pry'
 require 'dotenv'
@@ -6,8 +8,8 @@ require 'hcheck'
 
 Dotenv.load('spec/.env')
 
-FIXTURE_HCHECK_FILE_PATH = "#{Dir.pwd}/spec/fixtures/hcheck.yml".freeze
-INVALID_CONFIG_PATH = "#{Dir.pwd}/spec/fixtures/hcheck.invalid.yml".freeze
+FIXTURE_HCHECK_FILE_PATH = "#{Dir.pwd}/spec/fixtures/hcheck.yml"
+INVALID_CONFIG_PATH = "#{Dir.pwd}/spec/fixtures/hcheck.invalid.yml"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

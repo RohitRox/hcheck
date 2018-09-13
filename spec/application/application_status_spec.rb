@@ -131,7 +131,7 @@ RSpec.describe Hcheck::Application do
         end
 
         before do
-          Hcheck::Configuration::DEFAULT_CONFIG_PATH = 'some/random/path.yml'.freeze
+          Hcheck::Configuration::DEFAULT_CONFIG_PATH = 'some/random/path.yml'
         end
 
         it 'display config error with 5xx response' do

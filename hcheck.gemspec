@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'hcheck/version'
@@ -28,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.test_files = spec.files.grep(%r{^(test|spec|features)/})
   spec.bindir = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib'.freeze]
+  spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'haml', '~> 5.0'
   spec.add_runtime_dependency 'sinatra', '~> 2.0'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'logger'
 
 require 'hcheck/configuration/service'
@@ -8,7 +10,7 @@ module Hcheck
   class Configuration
     attr_reader :services
 
-    DEFAULT_CONFIG_PATH = "#{Dir.pwd}/hcheck.yml".freeze
+    DEFAULT_CONFIG_PATH = "#{Dir.pwd}/hcheck.yml"
 
     def initialize(config)
       @services = config.map do |key, options|

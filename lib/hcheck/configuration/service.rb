@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # find and require all check modules
 Gem.find_files('hcheck/checks/*.rb').each do |check_file|
   require "hcheck/checks/#{File.basename(check_file)}"
@@ -11,7 +13,7 @@ module Hcheck
     class Service
       attr_reader :name, :check_not_available
 
-      NOT_IMPLEMENTED_MSG = 'Check not implemented for this service'.freeze
+      NOT_IMPLEMENTED_MSG = 'Check not implemented for this service'
 
       def initialize(service, options)
         @name = service.to_s

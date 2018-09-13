@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require 'erb'
 require 'logger'
@@ -13,7 +15,7 @@ module Hcheck
   class << self
     attr_accessor :configuration, :logging
 
-    LOG_FILE_PATH = 'log/hcheck.log'.freeze
+    LOG_FILE_PATH = 'log/hcheck.log'
 
     def status
       if configuration
