@@ -64,10 +64,10 @@ redis:
     :password:
     :role: master
     :sentinels:
-      - :host: localhost
-        :port: 26379
-      - :host: localhost
-        :port: 26380
+      - host: localhost
+        port: 26379
+      - host: localhost
+        port: 26380
 mongodb:
   check: Mongo DB
   hosts:
