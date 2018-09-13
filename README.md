@@ -90,7 +90,7 @@ ping:
   url: http://127.0.0.1:3033/
 ```
 
-`check` key refers to given name or description of the check. Note that some of the keys are sybmols. Please look into the corresponding check modules and determine if you need string or symbols for the config for your purpose.
+`check` key refers to name or description than can be given to a check.
 
 ## Authenticated Hcheck
 
