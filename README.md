@@ -59,11 +59,11 @@ redis:
     db: hcheck
     password:
   - check: Delayed Jobs Store
-    :url: redis://mymaster
-    :db: hcheck
-    :password:
-    :role: master
-    :sentinels:
+    url: redis://mymaster
+    db: hcheck
+    password:
+    role: master
+    sentinels:
       - host: localhost
         port: 26379
       - host: localhost
