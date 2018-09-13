@@ -7,8 +7,7 @@ module Hcheck
       # @config { hosts, user, password }
       def status(config)
         client = Dalli::Client.new(config.delete(:url), config)
-        client.set('test', 'test')
-        client.get('test')
+        client.get('_')
         'ok'
       rescue Dalli::RingError => e
         Hcheck.logger.error "[HCheck] Memcached::Error::NoServerAvailable #{e.message}"

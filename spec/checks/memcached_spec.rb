@@ -10,7 +10,7 @@ RSpec.describe Hcheck::Checks::Memcached do
       }
     end
     let(:config) { { url: url }.merge(other_config) }
-    let(:connection) { double('Dalli::Client', set: 'ok', get: 'ok') }
+    let(:connection) { double('Dalli::Client', get: 'ok') }
 
     before do
       allow(Dalli::Client).to receive(:new) { connection }
@@ -31,7 +31,7 @@ RSpec.describe Hcheck::Checks::Memcached do
 
     context 'when hcheck is not able to connect to Memcached with supplied config' do
       it 'returns bad' do
-        allow(connection).to receive(:set).and_raise(Dalli::RingError)
+        allow(connection).to receive(:get).and_raise(Dalli::RingError)
         expect(subject).to eql 'bad'
       end
     end

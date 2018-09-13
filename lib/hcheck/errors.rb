@@ -2,6 +2,7 @@ module Hcheck
   module Errors
     class HcheckError < StandardError
       MSG = 'Hcheck standard error'.freeze
+
       def initialize(msg = nil)
         message = msg || self.class::MSG
         Hcheck.logger.error message
