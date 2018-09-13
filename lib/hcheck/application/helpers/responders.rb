@@ -1,5 +1,6 @@
 module Hcheck
   module ApplicationHelpers
+    # Sinatra app controller helpers
     module Responders
       module_function
 

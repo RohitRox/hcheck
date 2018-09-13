@@ -6,9 +6,7 @@ module Hcheck
     module Redis
       # @config { host, port, db, password }
       def status(config)
-        if config[:sentinels]
-          config[:sentinels] = config[:sentinels].map(&:symbolize_keys)
-        end
+        config[:sentinels] = config[:sentinels].map(&:symbolize_keys) if config[:sentinels]
 
         ::Redis.new(config).ping
         'ok'

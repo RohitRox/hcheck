@@ -1,5 +1,6 @@
 module Hcheck
   module Errors
+    # Hcheck standard error class
     class HcheckError < StandardError
       MSG = 'Hcheck standard error'.freeze
 
@@ -21,8 +22,8 @@ module Hcheck
     class ConfigurationError < HcheckError
       MSG = 'Hcheck configuration cannot not be found or read'.freeze
 
-      def initialize(e)
-        super("#{MSG}\n#{e.class}\n#{e.message}")
+      def initialize(err)
+        super("#{MSG}\n#{err.class}\n#{err.message}")
       end
     end
   end
