@@ -10,7 +10,7 @@ module Hcheck
   class Configuration
     attr_reader :services
 
-    DEFAULT_CONFIG_PATH = "#{Dir.pwd}/hcheck.yml"
+    DEFAULT_CONFIG_PATH = defined?(Rails::Railtie) ? "#{Dir.pwd}/config/hcheck.yml" : "#{Dir.pwd}/hcheck.yml"
 
     def initialize(config)
       @services = config.map do |key, options|
