@@ -20,18 +20,19 @@ Or install it yourself as:
 
 ## Usage
 
-To run as standalone server
+To run as standalone server:
 ``` bash
   hcheck -c path/to/hcheck.yml
-  hcheck # looks for hcheck.yml in current project root
+  hcheck # looks for hcheck.yml in current project root path
 ```
 
-To mount in rails app:
+Usage in rails:
 ``` ruby
   # routes.rb
   mount Hcheck::Status => '/hcheck'
 ```
-Looks for `hcheck.yml` in rails root
+
+Looks for `hcheck.yml` in `config` directory.
 
 Example `hcheck.yml`
 ``` yaml
@@ -108,14 +109,9 @@ The checks during test loads the environmental settings from `spec/.env` for hel
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-## Todo
-
-Styles for status page.
-
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hcheck.
+Bug reports and pull requests are welcome on GitHub at https://github.com/rohitrox/hcheck.
 
 ## License
 
