@@ -16,4 +16,3 @@ else
   end
   Hcheck::Application.run!
 end
-

@@ -8,8 +8,8 @@ require 'hcheck'
 
 Dotenv.load('spec/.env')
 
-FIXTURE_HCHECK_FILE_PATH = "spec/fixtures/hcheck.yml"
-INVALID_CONFIG_PATH = "spec/fixtures/hcheck.invalid.yml"
+FIXTURE_HCHECK_FILE_PATH = 'spec/fixtures/hcheck.yml'
+INVALID_CONFIG_PATH = 'spec/fixtures/hcheck.invalid.yml'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

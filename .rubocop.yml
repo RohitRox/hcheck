@@ -11,3 +11,7 @@ Metrics/LineLength:
     - 'spec/**/*.rb'
 Lint/AssignmentInCondition:
   Enabled: false
+AllCops:
+  TargetRubyVersion: 2.3
+Style/FrozenStringLiteralComment:
+  Enabled: false
