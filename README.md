@@ -29,10 +29,8 @@ To run as standalone server:
 Usage in rails:
 ``` ruby
   # routes.rb
-  mount Hcheck::Status => '/hcheck'
+  mount Hcheck::Status => '/hcheck' # Needs hcheck.yml in config directory.
 ```
-
-Looks for `hcheck.yml` in `config` directory.
 
 Example `hcheck.yml`
 ``` yaml
@@ -92,6 +90,8 @@ ping:
 ```
 
 `check` key refers to name or description than can be given to a check.
+
+There is also a generator available if you fancy it: `hcheck g:config`, generates a sample hcheck yaml config file for you.
 
 ## Authenticated Hcheck
 
