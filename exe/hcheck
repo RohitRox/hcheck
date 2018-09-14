@@ -4,10 +4,16 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require 'hcheck'
 
-if ARGV.any?
-  Hcheck::Configuration.load_argv(ARGV)
+# check if command is to generate config
+if ARGV.any? && ARGV[0].eql?('g:config')
+  Hcheck::Configuration.generate_config
 else
-  Hcheck::Configuration.load_default
+  # try load config from args if supplied
+  if ARGV.any?
+    Hcheck::Configuration.load_argv(ARGV)
+  else
+    Hcheck::Configuration.load_default
+  end
+  Hcheck::Application.run!
 end
 
-Hcheck::Application.run!

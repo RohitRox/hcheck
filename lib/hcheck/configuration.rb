@@ -9,8 +9,8 @@ module Hcheck
   # initializes service classes from config
   class Configuration
     attr_reader :services
-
-    DEFAULT_CONFIG_PATH = defined?(Rails::Railtie) ? "#{Dir.pwd}/config/hcheck.yml" : "#{Dir.pwd}/hcheck.yml"
+    DEFAULT_HCHECK_DIR = Gem.loaded_specs['rails'] ? "config/" : ""
+    DEFAULT_CONFIG_PATH = [DEFAULT_HCHECK_DIR, 'hcheck.yml'].join
 
     def initialize(config)
       @services = config.map do |key, options|
@@ -40,6 +40,11 @@ module Hcheck
         YAML.safe_load(ERB.new(File.read(path)).result, [Symbol]) || {}
       rescue StandardError => e
         raise Hcheck::Errors::ConfigurationError, e
+      end
+
+      def generate_config
+        FileUtils.copy_file(Gem.loaded_specs["hcheck"].gem_dir+'/hcheck.sample.yml', DEFAULT_CONFIG_PATH)
+        puts "Generated #{DEFAULT_CONFIG_PATH}"
       end
 
       private
