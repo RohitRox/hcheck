@@ -1,13 +1,13 @@
 Metrics/BlockLength:
   Exclude:
     - hcheck.gemspec
-    - 'spec/hcheck/**/*.rb'
+    - 'spec/**/*.rb'
 Metrics/MethodLength:
   Max: 16
 Metrics/LineLength:
   Max: 110
   Exclude:
     - hcheck.gemspec
-    - 'spec/hcheck/**/*.rb'
+    - 'spec/**/*.rb'
 Lint/AssignmentInCondition:
   Enabled: false
