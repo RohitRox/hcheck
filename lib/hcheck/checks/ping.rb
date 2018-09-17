@@ -7,7 +7,8 @@ module Hcheck
     module Ping
       # @config { url }
       def status(config)
-        request = build_request(config)
+        url = URI.parse(config[:url])
+        request = build_request(url)
 
         case request.request_head(url.path)
         when Net::HTTPSuccess, Net::HTTPRedirection, Net::HTTPInformation
@@ -24,8 +25,7 @@ module Hcheck
         require 'net/http'
       end
 
-      def build_request(config)
-        url = URI.parse(config[:url])
+      def build_request(url)
         req = Net::HTTP.new(url.host, url.port)
         req.use_ssl = true if url.scheme == 'https'
         req.read_timeout = 5 # seconds
