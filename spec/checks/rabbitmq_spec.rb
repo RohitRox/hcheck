@@ -2,23 +2,25 @@ RSpec.describe Hcheck::Checks::Rabbitmq do
   include Hcheck::Checks::Rabbitmq
 
   describe '#status' do
-    let(:config) do
+    let(:test_config) do
       {
         host: 'RABBIT_HOST',
         user: 'RABBIT_USER',
         pass: 'RABBIT_PASS'
       }
     end
-    let(:connection) { double('Bunny', start: true, close: true) }
+    let(:bunny_connection) { double('Bunny', start: true, close: true) }
 
     before do
-      allow(Bunny).to receive(:new) { connection }
+      allow(Bunny).to receive(:new) { bunny_connection }
     end
 
-    subject { status(config) }
+    subject { status(test_config) }
 
     it 'tries to make rabbitmq connection with supplied config' do
-      expect(Bunny).to receive(:new).with(config)
+      expect(Bunny).to receive(:new).with(test_config)
+      expect(bunny_connection).to receive(:start)
+      expect(bunny_connection).to receive(:close)
 
       subject
     end

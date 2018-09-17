@@ -2,21 +2,21 @@ RSpec.describe Hcheck::Checks::Mongodb do
   include Hcheck::Checks::Mongodb
 
   describe '#status' do
-    let(:config) do
+    let(:test_config) do
       {
         hosts: ['MONGO_DB_HOST', nil]
       }
     end
-    let(:connection) { double('Mongo::Client', database_names: [], close: true) }
+    let(:mongo_connection) { double('Mongo::Client', database_names: [], close: true) }
 
     before do
-      allow(Mongo::Client).to receive(:new) { connection }
+      allow(Mongo::Client).to receive(:new) { mongo_connection }
     end
 
-    subject { status(config) }
+    subject { status(test_config) }
 
     it 'tries to make mongo connection with supplied config (removes nil hosts) with additional config' do
-      hosts = config[:hosts].compact
+      hosts = test_config[:hosts].compact
       expect(Mongo::Client).to receive(:new).with(hosts,
                                                   connect_timeout: 3,
                                                   server_selection_timeout: hosts.count * 2)
@@ -33,7 +33,7 @@ RSpec.describe Hcheck::Checks::Mongodb do
     context 'when mongo servers are not reachable' do
       it 'returns bad' do
         server_selector_object = double(:server_selector, server_selection_timeout: 1, local_threshold: 1)
-        allow(connection).to receive(:database_names).and_raise Mongo::Error::NoServerAvailable, server_selector_object
+        allow(mongo_connection).to receive(:database_names).and_raise Mongo::Error::NoServerAvailable, server_selector_object
 
         expect(subject).to eql 'bad'
       end

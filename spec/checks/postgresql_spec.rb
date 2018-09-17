@@ -2,7 +2,7 @@ RSpec.describe Hcheck::Checks::Postgresql do
   include Hcheck::Checks::Postgresql
 
   describe '#status' do
-    let(:config) do
+    let(:test_config) do
       {
         host: 'PG_DB_HOST',
         dbname: 'PG_DBNAME',
@@ -10,16 +10,16 @@ RSpec.describe Hcheck::Checks::Postgresql do
         password: 'PG_DB_PASSWORD'
       }
     end
-    let(:connection) { double('PG::Connection', close: true) }
+    let(:pg_connection) { double('PG::Connection', close: true) }
 
     before do
-      allow(PG::Connection).to receive(:new) { connection }
+      allow(PG::Connection).to receive(:new) { pg_connection }
     end
 
-    subject { status(config) }
+    subject { status(test_config) }
 
     it 'tries to make pg connection with supplied config' do
-      expect(PG::Connection).to receive(:new).with(config)
+      expect(PG::Connection).to receive(:new).with(test_config)
 
       subject
     end

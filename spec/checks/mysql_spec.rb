@@ -2,23 +2,23 @@ RSpec.describe Hcheck::Checks::Mysql do
   include Hcheck::Checks::Mysql
 
   describe '#status' do
-    let(:config) do
+    let(:test_config) do
       {
         host: 'MYSQL_DB_HOST',
         user: 'MYSQL_DB_USER',
         password: ''
       }
     end
-    let(:connection) { double('Mysql2::Client', close: true) }
+    let(:mysql_connection) { double('Mysql2::Client', close: true) }
 
     before do
-      allow(Mysql2::Client).to receive(:new) { connection }
+      allow(Mysql2::Client).to receive(:new) { mysql_connection }
     end
 
-    subject { status(config) }
+    subject { status(test_config) }
 
     it 'tries to make mysql connection with supplied config' do
-      expect(Mysql2::Client).to receive(:new).with(config)
+      expect(Mysql2::Client).to receive(:new).with(test_config)
 
       subject
     end
