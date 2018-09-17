@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe Hcheck::Status do
-
   it_behaves_like Hcheck::ApplicationHelpers::Responders do
     before do
       Hcheck::Configuration::DEFAULT_CONFIG_PATH = FIXTURE_HCHECK_FILE_PATH
@@ -11,7 +10,7 @@ RSpec.describe Hcheck::Status do
       Hcheck::Status.new
     end
 
-    let(:path){ '/' }
+    let(:path) { '/' }
 
     context 'bad config' do
       ORIGINAL_CONFIG = Hcheck::Configuration::DEFAULT_CONFIG_PATH
@@ -55,5 +54,4 @@ RSpec.describe Hcheck::Status do
       end
     end
   end
-
 end
