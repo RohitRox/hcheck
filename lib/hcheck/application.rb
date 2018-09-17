@@ -6,7 +6,7 @@ require 'hcheck/application/helpers/responders'
 
 module Hcheck
   # base sinatra application
-  class Base < Sinatra::Base
+  class SinatraBase < Sinatra::Base
     set :public_dir, File.expand_path('application/assets', __dir__)
     set :views, File.expand_path('application/views', __dir__)
     set :haml, format: :html5
@@ -15,12 +15,12 @@ module Hcheck
   end
 
   # sinatra that gets booted when run in standalone mode
-  class Application < Base
+  class Application < SinatraBase
     get('/hcheck') { h_status }
   end
 
   # sinatra when mounted to rails
-  class Status < Base
+  class Status < SinatraBase
     def initialize(app = nil)
       Hcheck::Configuration.load_default
     rescue Hcheck::Errors::ConfigurationError => e
